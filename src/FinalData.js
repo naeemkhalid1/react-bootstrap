@@ -6,55 +6,42 @@ class FinalData extends Component{
     constructor(props){
         super(props);
         this.state={
-            item:'',
+            item:[{id:1,},{id:2,},{id:3,},]
         }
     }
-dataHolder(){
-    const tempvar=this.props.PendingData;
-    console.log("tempcar",tempvar);
-}
+
 
     render(){
-        // const data= this.state.item.map((item,i)=>{
-        //   return <div key={i}>
-        //       <ul className="listUser">
-        //           <li>{item}</li>
-        //           <Button>Approve</Button>
-                  
-                  
-        //       </ul>
-        //   </div>
-        //   })
-        this.dataHolder();
-       
-         
+        const renderdata=(tasks)=>{
+            return <Card style={{ width: '18rem',height: '16rem' }} className="main_Card extraClass" key={tasks.id}>
+                        
+                        <Card.Body style={{background:'rgb(224, 235, 235)'}}>
+                            <Card.Title style={{background:'white', border:'5px'}}>STATUS</Card.Title>
+                        <Card.Text className="paragraphClass">
+                            
+                            Completed!
+                    
+                            </Card.Text>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            
 
-        return(
+                            {/* <ListGroupItem>Final Data will be here</ListGroupItem>  */}
+                        </ListGroup>
+                        
+                    </Card>
+
+}
+        
+return(
          <div className="intial_data">
              <Heading/>
-<Card style={{ width: '18rem',height: '16rem' }} className="main_Card">
-  {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
-  <Card.Body>
-    <Card.Title>Marked Tasks</Card.Title>
- <Card.Text >
-    Completed Tasks  List
-    </Card.Text>
-  </Card.Body>
-  <ListGroup className="list-group-flush">
-       
+             {
+                 this.state.item.map(renderdata)
+             }
 
-    <ListGroupItem>Final Data will be here</ListGroupItem> 
-    {/* <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-    <ListGroupItem>Vestibulum at eros</ListGroupItem> */}
-  </ListGroup>
-  {/* <Card.Body> */}
-    {/* <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link> */}
-  {/* </Card.Body> */}
-</Card>
-</div>
-        )
-    }
+          </div>
+)}
 
 
 
@@ -62,7 +49,7 @@ dataHolder(){
 const Heading=()=>{
     return(
         <div className="intialDataHeading">
-    <Card style={{ width: '18rem' }} className="mainCard">
+    <Card style={{ width: '18rem' ,padding:'10px 0 0 0'}} className="mainCard">
     <Card.Title><span className="headings"> TASKS COMPLETED</span></Card.Title>
     </Card> 
     </div>)
