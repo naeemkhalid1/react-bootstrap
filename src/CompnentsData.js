@@ -37,37 +37,24 @@ class ComponentsData extends Component{
          
 
         return(
-            <div className="components">
-        
-         
-{/* <Card style={{ width: '18rem' }} className="mainCard">
-  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-  <Card.Body>
-    <Card.Title><span className="headings">User Requests</span></Card.Title>
-    <Card.Text>
-       
-     students requests for approvel.
-    
-    </Card.Text>
-  </Card.Body>
-  <ListGroup className="list-group-flush">
-       
+            <div className="topclass">
+                <Heading/>
+                    <div className="components">
 
-    <ListGroupItem>{data}  <Button onClick={this.hide}> Process </Button></ListGroupItem> 
-  </ListGroup>
-  <Card.Body>
-   
-  </Card.Body>
-</Card> */}
-<IntialData/>
-<PendingData   />
-<FinalData/>
-</div>
+                            <IntialData/>
+                            <PendingData />
+                            <FinalData/>
+                    </div>
+            </div>
         )
-       
-    }
-
-
-
+ }
 }
+const Heading=()=>{
+    return( 
+    <Card style={{ width: '38rem' }} className="mainCard maincomponentData">
+    <Card.Title><h2 className="headingtag"> USERS DATA</h2></Card.Title>
+    </Card> 
+    )
+
+};
 export default ComponentsData;

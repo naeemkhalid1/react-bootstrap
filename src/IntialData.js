@@ -8,7 +8,7 @@ class IntialData extends Component{
     constructor(props){
         super(props);
         this.state={
-            item:[{id:1, userName:"AHMED",},{id:2, userName:"YASIR",},{id:3, userName:"MEHMOOD",},],
+            item:[{id:1, img:"./avatar.png", userName:"AHMED",},{id:2, img:"./img_avatar.png", userName:"YASIR",},{id:3, img:"./boy.png", userName:"MEHMOOD",},],
             showData:{
                 id:'',
                 userName:'',
@@ -29,54 +29,35 @@ class IntialData extends Component{
             console.log("called",user)
 
      return <Card style={{ width: '18rem',height: '16rem' }} className="mainCard extraClass" key={user.id}>
-  {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
+       <Card.Img style={{width:'50%',height:'50%',margin:'0 auto'}} variant="top" src={user.img} />
+      
   <Card.Body>
   <Card.Title>{user.userName} <span style={{color:'green',fontSize:'15px'}}>Requesting</span></Card.Title>
     <Card.Text>
-    {/* {user.userName} */}
     </Card.Text>
   </Card.Body>
   <ListGroup className="list-group-flush">
        
 
-    <ListGroupItem> <Button onClick={this.hide}> Process </Button></ListGroupItem> 
+    <ListGroupItem> <Button onClick={this.hide}> Process </Button>  <Button onClick={this.hide}style={{background:'red',}}> DECLINE </Button></ListGroupItem> 
   </ListGroup>
  
 </Card>
         
         }
-        // const data= this.state.item.map((item,i)=>{
-        //   return <div key={item.id}>
-        //       <ul className="listUser">
-        //           <li>{item.userName}</li>
-        //           {/* <PendingData  key={item.id} userName={item.name} onSend={this.hide}  /> */}   
-        //       </ul>
-           
-        //   </div>
-        //   })
-         
-
-        return(
+return(
             <div className="intial_data">
-        <Heading/>
+                <Heading/>
          
- {
-     this.state.item.map(renderCards)
-     
- }
+               {this.state.item.map(renderCards)}
 
-</div>
-        )
-       
-    }
-
-
-
+           </div>
+        )}
 }
 const Heading=()=>{
     return(
         
-    <Card style={{ width: '18rem' }} className="mainCard intialDataHeading">
+    <Card style={{ width: '18rem',padding:'10px 0 0 0' }} className="mainCard intialDataHeading">
     <Card.Title><span className="headings"> USER REQUESTS</span></Card.Title>
     </Card> 
 
