@@ -1,0 +1,20 @@
+.headings{
+    color: rgb(19, 94, 233);
+    
+}
+.intial_data{
+     display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+ .intialDataHeading{
+   
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
+    margin-bottom: 5px;
+
+}
+.extraClass{
+ margin-bottom: 5px;
+   
+}
