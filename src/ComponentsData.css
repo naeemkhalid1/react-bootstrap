@@ -1,6 +1,6 @@
 .components{
     display: flex;
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-around;
     background-color: rgb(189, 178, 182);
     

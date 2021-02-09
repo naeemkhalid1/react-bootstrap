@@ -7,49 +7,45 @@ import './intialData.css';
 class IntialData extends Component{
     constructor(props){
         super(props);
-        this.state={
-            item:[{id:1, img:"./avatar.png", userName:"AHMED",},{id:2, img:"./img_avatar.png", userName:"YASIR",},{id:3, img:"./boy.png", userName:"MEHMOOD",},],
-            showData:{
-                id:'',
-                userName:'',
-            },
+        this.state={newid:this.props.identity, seconid:'',
         }
-        this.hide=this.hide.bind(this);
+        // this.hide=this.hide.bind(this);
     }
-    hide(){
+    // hide(){
        
-        this.setState({
-            showData:this.state.id,
-        })
+    //     this.setState({
+    //         showData:this.state.id,
+    //     })
 
+    // }
+    settngstate(){
+        //  this.setState ({seconid:this.state.newid});
     }
+    
    
     render(){
-        const renderCards=(user)=>{
-            console.log("called",user)
+        const{identity,img,name,hide,showData}=this.props;
 
-     return <Card style={{ width: '18rem',height: '16rem' }} className="mainCard extraClass" key={user.id}>
-       <Card.Img style={{width:'50%',height:'50%',margin:'0 auto'}} variant="top" src={user.img} />
-      
-  <Card.Body>
-  <Card.Title>{user.userName} <span style={{color:'green',fontSize:'15px'}}>Requesting</span></Card.Title>
-    <Card.Text>
-    </Card.Text>
-  </Card.Body>
-  <ListGroup className="list-group-flush">
        
+     <Heading/>
+return(
+            <div className="intial_data" key={identity}>
+             
+<Card style={{ width: '18rem',height: '16rem' }} className="mainCard extraClass" key={identity}>
+       <Card.Img style={{width:'50%',height:'50%',margin:'0 auto'}} variant="top" src={img} />
+      
+            <Card.Body>
+            <Card.Title>{name} <span style={{color:'green',fontSize:'15px'}}>Requesting</span></Card.Title>
+                <Card.Text>
+                </Card.Text>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+                
 
-    <ListGroupItem> <Button onClick={this.hide}> Process </Button>  <Button onClick={this.hide}style={{background:'red',}}> DECLINE </Button></ListGroupItem> 
-  </ListGroup>
+                <ListGroupItem> <Button onClick={()=>showData(identity)}> Process </Button>  <Button onClick={()=>hide(identity)}style={{background:'red',}}> DECLINE </Button></ListGroupItem> 
+            </ListGroup>
  
 </Card>
-        
-        }
-return(
-            <div className="intial_data">
-                <Heading/>
-         
-               {this.state.item.map(renderCards)}
 
            </div>
         )}
