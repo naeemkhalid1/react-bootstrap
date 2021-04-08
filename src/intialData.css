@@ -3,6 +3,9 @@
     font-weight: bold;
     
 }
+.headingsSTATUS{
+     color: white;
+}
 .intial_data{
      display: flex;
     flex-direction: column;

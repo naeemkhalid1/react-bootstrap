@@ -3,6 +3,18 @@ import {Card,ListGroup,ListGroupItem,Button} from 'react-bootstrap';
 import PendingData from './PendendData';
 import FinalData from './FinalData';
 import './intialData.css';
+
+
+const Heading=()=>{
+    return(
+        
+    <Card style={{ width: '18rem',padding:'10px 0 0 0' }} className="mainCard intialDataHeading">
+    <Card.Title><span className="headings"> USER REQUESTS</span></Card.Title>
+    </Card> 
+
+)
+
+};
  
 class IntialData extends Component{
     constructor(props){
@@ -25,12 +37,13 @@ class IntialData extends Component{
    
     render(){
         const{identity,img,name,hide,showData}=this.props;
+       
 
        
-     <Heading/>
+    
 return(
             <div className="intial_data" key={identity}>
-             
+            {/* <Heading/> */}
 <Card style={{ width: '18rem',height: '16rem' }} className="mainCard extraClass" key={identity}>
        <Card.Img style={{width:'50%',height:'50%',margin:'0 auto'}} variant="top" src={img} />
       
@@ -50,14 +63,6 @@ return(
            </div>
         )}
 }
-const Heading=()=>{
-    return(
-        
-    <Card style={{ width: '18rem',padding:'10px 0 0 0' }} className="mainCard intialDataHeading">
-    <Card.Title><span className="headings"> USER REQUESTS</span></Card.Title>
-    </Card> 
 
-)
 
-};
 export default IntialData;

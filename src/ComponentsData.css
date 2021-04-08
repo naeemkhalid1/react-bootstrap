@@ -1,21 +1,75 @@
-.components{
-    display: flex;
-    flex-direction: column; 
-    justify-content: space-around;
-    background-color: rgb(189, 178, 182);
-    
+.components {
+  display: flex;
+  /* flex-direction: column;  */
+  justify-content: space-between;
+  background-color: rgb(189, 178, 182);
 }
-.headingtag{
-    font-weight: bold;
-    color: rgb(34, 90, 81);
-    padding: 20px 0 0 0;
+.headingtag {
+  font-weight: bold;
+  color: rgb(34, 90, 81);
+  padding: 20px 0 0 0;
 }
-.maincomponentData{
-    margin: 10px auto;
+.maincomponentData {
+  margin: 10px auto;
+}
+.topclass {
+  background-color: rgb(189, 178, 182);
+  margin: 0;
+  padding: 10px 0 0 0;
+}
+.componentsInner {
+  display: inline-block;
+  vertical-align: middle;
+}
+.headingsName {
+  display: flex;
+  justify-content: space-between;
+}
+.headingsNameTable {
+  display: flex;
+  justify-content: space-between;
+  width: 520px;
+  background-color: antiquewhite;
+  padding: 10px;
+}
+.rows {
+  background-color: aqua;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+#title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
 
+#users {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
 }
-.topclass{
-    background-color: rgb(189, 178, 182);
-    margin: 0 ;
-    padding: 10px 0 0 0;
+
+#users td,
+#users th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#users tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#users tr:hover {
+  background-color: #ddd;
+}
+
+#users th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4caf50;
+  color: white;
 }
