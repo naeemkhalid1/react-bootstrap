@@ -1,77 +1,95 @@
-import React, { Component } from 'react';
-import {Card,ListGroup,ListGroupItem,Button} from 'react-bootstrap';
+import React, { Component } from "react";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import "./intialData.css";
-import FinalData from './FinalData';
- 
-class PendingData extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            item:'',
-        }
-    }
-dataHolder(){
-    const tempvar=this.props.PendingData;
-    console.log("tempcar",tempvar);
+import FinalData from "./FinalData";
+
+class PendingData extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      item: this.props,
+      showState: "",
+    };
+    // this.showCompleteData = this.showCompleteData.bind(this);
+  }
+  // dataHolder(){
+  //     const tempvar=this.props.PendingData;
+  //     console.log("tempcar",tempvar);
+  // }
+  //   showCompleteData(clickedId) {
+  //     this.state.item.filter((filterItems) => {
+  //       if (filterItems.id === clickedId) {
+  //         // temparray.push({id:filterItems.id, img:filterItems.img, userName:filterItems.userName,},);
+  //         this.setState({
+  //           showState: [
+  //             ...this.state.showState,
+  //             {
+  //               id: filterItems.id,
+  //               img: filterItems.img,
+  //               userName: filterItems.userName,
+  //             },
+  //           ],
+  //         });
+  //       }
+  //     });
+  //     const currentIt = this.state.item.filter(
+  //       (filterItems) => filterItems.id !== clickedId
+  //     );
+  //     this.setState({ item: currentIt });
+  //   }
+
+  render() {
+    const { identityitem, img, name, showCompleteData, priority } = this.props;
+    console.log("pending Data", this.props);
+    return (
+      <div className="intial_data" key={identityitem}>
+        <Card
+          style={{ width: "18rem", height: "9rem" }}
+          className="mainCard extraClass"
+          key={identityitem}
+        >
+          {/* <Card.Img
+            style={{ width: "50%", height: "50%", margin: "0 auto" }}
+            variant="top"
+            src={img}
+          /> */}
+
+          <Card.Body>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text>
+              {priority}
+              <span style={{ color: "green", fontSize: "15px" }}>({img})</span>
+            </Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>
+              {" "}
+              <Button
+                onClick={() => showCompleteData(identityitem)}
+                style={{ background: "gray" }}
+              >
+                Mark Complete
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        </Card>
+      </div>
+    );
+  }
 }
-
-    render(){
-        // const data= this.state.item.map((item,i)=>{
-        //   return <div key={i}>
-        //       <ul className="listUser">
-        //           <li>{item}</li>
-        //           <Button>Approve</Button>
-                  
-                  
-        //       </ul>
-        //   </div>
-        //   })
-        this.dataHolder();
-       
-         
-
-        return(
-            <div className="intial_data">
-              <Heading/>  
-         
-<Card style={{ width: '18rem', height:'16rem'}} className="main_Card">
-  {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
-  <Card.Body>
-    <Card.Title>Task in Processing</Card.Title>
-    <Card.Text>
-       
-      Processing tasks will be shown here.
-    
-    </Card.Text>
-  </Card.Body>
-  <ListGroup className="list-group-flush">
-       
-
-    <ListGroupItem>Pending Data will be here</ListGroupItem> 
-    {/* <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-    <ListGroupItem>Vestibulum at eros</ListGroupItem> */}
-  </ListGroup>
-  {/* <Card.Body> */}
-    {/* <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link> */}
-  {/* </Card.Body> */}
-</Card>
-
-</div>
-        )
-    }
-
-
-
-}
-const Heading=()=>{
-    return(
-        <div className="intialDataHeading">
-    <Card style={{ width: '18rem' }} className="mainCard">
-    <Card.Title><span className="headings"> TASKS IN PROCESSING</span></Card.Title>
-    </Card> 
-    </div>)
-
+const Heading = () => {
+  return (
+    <div className="intialDataHeading">
+      <Card
+        style={{ width: "18rem", padding: "10px 0 0 0" }}
+        className="mainCard"
+      >
+        <Card.Title>
+          <span className="headings"> TASKS IN PROCESSING</span>
+        </Card.Title>
+      </Card>
+    </div>
+  );
 };
 
 export default PendingData;

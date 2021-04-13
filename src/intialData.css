@@ -1,6 +1,10 @@
 .headings{
     color: rgb(19, 94, 233);
+    font-weight: bold;
     
+}
+.headingsSTATUS{
+     color: white;
 }
 .intial_data{
      display: flex;
@@ -17,4 +21,7 @@
 .extraClass{
  margin-bottom: 5px;
    
+}
+.paragraphClass{
+    margin: 50px 0 0 0;
 }
