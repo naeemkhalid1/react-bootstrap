@@ -37,11 +37,10 @@ class UsersData extends Component {
     this.setState({ item: json });
   }
   displayData() {
-    console.log("running");
     return this.state.item.map((item, i) => {
-      console.log("length", this.state.item.length);
       return (
         <tr key={i}>
+          <td>{item.id}</td>
           <td>{item.hospital}</td>
           <td>{item.queueState}</td>
           <td>{item.notes}</td>
@@ -58,20 +57,23 @@ class UsersData extends Component {
       console.log("datadisplayed", this.state.item);
     }
     return (
-      <div className="">
-        <h1 id="title">Queue Users</h1>
-        <table id="users">
-          <thead>
-            <tr>
-              <th>Hospital Name</th>
-              <th>State</th>
-              <th>Notes</th>
-              <th>priority</th>
-              <th>User</th>
-            </tr>
-          </thead>
-          <tbody>{this.displayData()}</tbody>
-        </table>
+      <div>
+        <div className="tableHolder">
+          <h1 id="title">Queue Users</h1>
+          <table id="users">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Hospital Name</th>
+                <th>State</th>
+                <th>Notes</th>
+                <th>priority</th>
+                <th>User</th>
+              </tr>
+            </thead>
+            <tbody>{this.displayData()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

@@ -2,6 +2,7 @@
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import React, { Component, useEffect, useState } from "react";
 import axios from "axios";
+import { Pagination } from "antd";
 import "./ComponentsData.css";
 
 // import {
@@ -37,7 +38,6 @@ class TableData extends Component {
     this.setState({ item: json });
   }
   displayData() {
-    console.log("running");
     return this.state.item.map((item, i) => {
       return (
         <tr key={item.id}>
@@ -58,7 +58,7 @@ class TableData extends Component {
       console.log("datadisplayed", this.state.item);
     }
     return (
-      <div className="">
+      <div className="tableHolder">
         <h1 id="title">Users Table</h1>
         <table id="users">
           <thead>
@@ -71,8 +71,9 @@ class TableData extends Component {
               <th>Gender</th>
             </tr>
           </thead>
-          <tbody>{this.displayData()}</tbody>
+          <tbody id="tbody">{this.displayData()}</tbody>
         </table>
+        {/* <Pagination defaultCurrent={1} total={50} /> */}
       </div>
     );
   }

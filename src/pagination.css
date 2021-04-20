@@ -1,0 +1,22 @@
+.pagnation{
+    background-color: rgb(255, 235, 235);
+    text-align: center;
+    width: 50%;
+}
+.pageNumber{
+    background-color: teal;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px 10px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.link{
+    color: white;
+    text-decoration: none;
+    
+}

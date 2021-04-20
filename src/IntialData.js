@@ -35,7 +35,16 @@ class IntialData extends Component {
   }
 
   render() {
-    const { identity, img, name, hide, showData, priority } = this.props;
+    const {
+      identity,
+      hospital,
+      img,
+      name,
+      hide,
+      showData,
+      priority,
+      onUpdate,
+    } = this.props;
 
     return (
       <div className="intial_data" key={identity}>
@@ -50,14 +59,21 @@ class IntialData extends Component {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
-              {priority}
+              {identity}|{priority}| {hospital}
               <span style={{ color: "green", fontSize: "15px" }}>({img})</span>
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
-              {" "}
-              <Button onClick={() => showData(identity)}> Process </Button>{" "}
+              <Button
+                onClick={() => {
+                  showData(identity);
+                  // onUpdate();
+                }}
+              >
+                {" "}
+                Process{" "}
+              </Button>{" "}
               <Button
                 onClick={() => hide(identity)}
                 style={{ background: "red" }}

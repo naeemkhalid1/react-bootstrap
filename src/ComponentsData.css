@@ -1,8 +1,16 @@
 .components {
   display: flex;
   flex-direction: row;
+  flex: 1 1 0;
   justify-content: space-between;
-  background-color: rgb(189, 178, 182);
+  background-color: #206e79;
+  height: 946px;
+  overflow: scroll;
+  padding: 10px;
+}
+.BTNs {
+  /* padding-top: 20px; */
+  float: right;
 }
 .headingtag {
   font-weight: bold;
@@ -16,11 +24,14 @@
 .maincomponentData {
   margin: 10px auto;
 }
+.Tables {
+  padding-top: 50px;
+}
 .topclass {
-  background-color: rgb(189, 178, 182);
+  background-color: #206e79;
   margin: 0 auto;
   padding: 20px;
-  width: 80%;
+  width: 90%;
 }
 .componentsInner {
   display: inline-block;
@@ -29,6 +40,7 @@
 .headingsName {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 .headingsNameTable {
   display: flex;
@@ -44,9 +56,22 @@
   justify-content: space-between;
   padding: 10px;
 }
+
+.tableHolder {
+  height: 500px;
+  overflow: scroll;
+  margin: 70px 0 0 0;
+}
 #title {
   text-align: center;
   font-family: arial, sans-serif;
+  background-color: #4caf50;
+  width: 50%;
+  margin: 0 auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: bold;
+  color: white;
 }
 
 #users {
@@ -54,7 +79,8 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   border: 3px solid #ddd;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 #users td,

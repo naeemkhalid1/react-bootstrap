@@ -25,9 +25,9 @@ class FinalData extends Component {
               {name}
             </Card.Title>
             <Card.Text className="paragraphClass">
+              {identityitem}
               {priority}
               <span style={{ color: "green", fontSize: "15px" }}>
-                {" "}
                 Visit({img})
               </span>
             </Card.Text>
