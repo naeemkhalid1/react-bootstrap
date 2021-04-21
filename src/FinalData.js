@@ -20,13 +20,12 @@ class FinalData extends Component {
           className="main_Card extraClass"
           key={identityitem}
         >
-          <Card.Body style={{ background: "rgb(224, 235, 235)" }}>
+          <Card.Body style={{ background: "white" }}>
             <Card.Title style={{ background: "white", border: "5px" }}>
               {name}
             </Card.Title>
             <Card.Text className="paragraphClass">
-              {identityitem}
-              {priority}
+              {identityitem} | {priority} |
               <span style={{ color: "green", fontSize: "15px" }}>
                 Visit({img})
               </span>

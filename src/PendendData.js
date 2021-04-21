@@ -57,8 +57,7 @@ class PendingData extends Component {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
-              {identityitem}
-              {priority}
+              {identityitem} | {priority} |
               <span style={{ color: "green", fontSize: "15px" }}>({img})</span>
             </Card.Text>
           </Card.Body>

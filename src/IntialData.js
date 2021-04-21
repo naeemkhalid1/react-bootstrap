@@ -59,7 +59,7 @@ class IntialData extends Component {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
-              {identity}|{priority}| {hospital}
+              {identity} | {priority} | {hospital}
               <span style={{ color: "green", fontSize: "15px" }}>({img})</span>
             </Card.Text>
           </Card.Body>
