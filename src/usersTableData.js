@@ -32,7 +32,7 @@ class UsersData extends Component {
   //     return this.setState({ item: temp });
   //   };
   async componentDidMount() {
-    const response = await fetch(`http://localhost:3000/queues`);
+    const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
     this.setState({ item: json });
   }

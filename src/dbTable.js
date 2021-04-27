@@ -33,7 +33,7 @@ class TableData extends Component {
   //     return this.setState({ item: temp });
   //   };
   async componentDidMount() {
-    const response = await fetch(`http://localhost:3000/detail`);
+    const response = await fetch(`http://192.168.1.110:3000/detail`);
     const json = await response.json();
     this.setState({ item: json });
   }
