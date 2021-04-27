@@ -51,7 +51,7 @@ class ComponentsData extends Component {
     this.setState({ showState: currentShowItems });
   }
   async componentDidMount() {
-    const response = await fetch(`http://localhost:3000/queues`);
+    const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
     // this.setState({
     //   getData: json,
@@ -82,7 +82,7 @@ class ComponentsData extends Component {
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
         console.log("++filterItem++", collection);
-        var putApiUrl = `http://192.168.1.108:3000/queue/${filterItems.id}`;
+        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
 
         // console.log("++clicked ", clickedId);
@@ -97,20 +97,6 @@ class ComponentsData extends Component {
               priority: filterItems.priority,
             },
           ],
-          // queProcess: [
-          //   ...this.state.queProcess,
-          //   {
-          //     id: filterItems.id,
-          //     queueState: filterItems.queueState,
-          //     user: filterItems.user,
-          //     priority: filterItems.priority,
-          //     hospital: filterItems.hospital,
-          //     notes: filterItems.notes,
-          //   },
-          //   // () => {
-          //   //   this.onUpdateQueue();
-          //   // },
-          // ],
         });
       }
     });
@@ -119,22 +105,6 @@ class ComponentsData extends Component {
     );
     this.setState({ item: currentIt });
   }
-  // pagintionHolder() {
-  //   const indexOfLastPost = this.state.currentPage * this.state.dataPerPage;
-
-  //   const indexOfFirstPost = indexOfLastPost - this.state.dataPerPage;
-  //   const currentPosts = this.state.getData.slice(
-  //     indexOfFirstPost,
-  //     indexOfLastPost
-  //   );
-  //   this.setState({
-  //     item: currentPosts,
-  //   });
-  //   console.log("====", this.state.getData);
-  //   console.log("index of last", indexOfLastPost);
-  //   console.log("index of first", indexOfFirstPost);
-  //   console.log("current posts", this.state.render);
-  // }
 
   showCompleteData(clickedId) {
     const collection = {};
@@ -146,8 +116,8 @@ class ComponentsData extends Component {
         collection.notes = filterItems.notes;
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
-        console.log("++filterItem++", collection);
-        var putApiUrl = `http://192.168.1.108:3000/queue/${filterItems.id}`;
+        console.log("++putItem++", collection);
+        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
         this.setState({
           completeStatus: [
@@ -168,10 +138,10 @@ class ComponentsData extends Component {
     this.setState({ showState: currentIt });
   }
   showTable() {
-    this.setState({ showQueue: this.state.showQueue + 1 });
+    this.setState({ showQueue: 1 });
   }
   showUserTable() {
-    this.setState({ showQueue: this.state.showQueue - 1 });
+    this.setState({ showQueue: 0 });
   }
   async putQueueApiCall(url, data) {
     console.log("postqueue data: ", data);
@@ -190,18 +160,10 @@ class ComponentsData extends Component {
   //   });
   // }
   render() {
-    {
-      console.log("show queue", this.state.showQueue);
-      console.log("show users", this.state.showQueue);
-    }
     return (
       <div className="topclass">
         <Heading />
-        {/* <Pagination
-          postsPerPage={this.state.dataPerPage}
-          totalPosts={this.state.getData.length}
-          paginate={this.paginate}
-        /> */}
+
         <div className="dataHolder">
           <div className="headingsName"></div>
 
@@ -263,7 +225,7 @@ class ComponentsData extends Component {
 
         <div className="Tables">
           <div className="BTNs">
-            {this.state.showQueue.length > 0 ? (
+            {this.state.showQueue > 0 ? (
               <Button
                 style={{
                   backgroundColor: "red",
@@ -288,7 +250,7 @@ class ComponentsData extends Component {
               </Button>
             )}
           </div>
-          {this.state.showQueue.length > 0 ? <UsersData /> : <TableData />}
+          {this.state.showQueue > 0 ? <UsersData /> : <TableData />}
         </div>
 
         <div>
