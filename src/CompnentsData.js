@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import ScrollArea from "react-scrollbar";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import PendingData from "./PendendData";
 import FinalData from "./FinalData";
 import axios from "axios";
+// import * as FaIcons from "react-icons/fa";
 import Pagination from "./pagination";
 import { BackTop } from "antd";
 import TableData from "./dbTable";
 import UsersData from "./usersTableData";
+import Button from "react-bootstrap/Button";
 import IntialData from "./IntialData";
 import IntialHeading from "./Headings/intialHeading";
 import PendingHeading from "./Headings/pendingHeading";
@@ -72,6 +74,13 @@ class ComponentsData extends Component {
     // this.pagintionHolder();
   }
   showData(clickedId) {
+    const currentdate = new Date();
+    const processTime =
+      currentdate.getHours() +
+      ":" +
+      currentdate.getMinutes() +
+      ":" +
+      currentdate.getSeconds();
     const collection = {};
     this.state.item.filter((filterItems) => {
       if (filterItems.id === clickedId) {
@@ -81,6 +90,7 @@ class ComponentsData extends Component {
         collection.notes = filterItems.notes;
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
+        collection.processTime = processTime;
         console.log("++filterItem++", collection);
         var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
@@ -227,23 +237,25 @@ class ComponentsData extends Component {
           <div className="BTNs">
             {this.state.showQueue > 0 ? (
               <Button
-                style={{
-                  backgroundColor: "red",
-                  paddingBottom: "10",
-                  fontWeight: "bold",
-                }}
+                variant="danger"
+                // style={{
+                //   backgroundColor: "red",
+                //   paddingBottom: "10",
+                //   fontWeight: "bold",
+                // }}
                 onClick={() => this.showUserTable()}
               >
                 View Users
               </Button>
             ) : (
               <Button
-                style={{
-                  backgroundColor: "white",
-                  paddingBottom: "10",
-                  color: "black",
-                  fontWeight: "bold",
-                }}
+                variant="success"
+                // style={{
+                //   backgroundColor: "white",
+                //   paddingBottom: "10",
+                //   color: "black",
+                //   fontWeight: "bold",
+                // }}
                 onClick={() => this.showTable()}
               >
                 View Queue Users

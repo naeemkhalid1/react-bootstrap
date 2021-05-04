@@ -41,7 +41,7 @@ class TableData extends Component {
     return this.state.item.map((item, i) => {
       return (
         <tr key={item.id}>
-          <td>{item.id}</td>
+          <td>{item.date_added}</td>
           <td>{item.name}</td>
           <td>{item.disease}</td>
           <td>{item.phone}</td>
