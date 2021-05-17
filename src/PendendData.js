@@ -40,11 +40,11 @@ class PendingData extends Component {
 
   render() {
     const { identityitem, img, name, showCompleteData, priority } = this.props;
-    console.log("pending Data", this.props);
+    // console.log("pending Data", this.props);
     return (
       <div className="intial_data" key={identityitem}>
         <Card
-          style={{ width: "18rem", height: "9rem" }}
+          style={{ width: "18rem", height: "10rem" }}
           className="mainCard extraClass"
           key={identityitem}
         >

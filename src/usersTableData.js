@@ -23,6 +23,7 @@ class UsersData extends Component {
     super(props);
     this.state = {
       item: [],
+      hospitalName: "",
     };
   }
   //   ShowData = async () => {
@@ -35,26 +36,36 @@ class UsersData extends Component {
     const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
     this.setState({ item: json });
+    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
+    const jsonemail = await responseemail.json();
+    const hospitalFind = jsonemail.filter((filter) => {
+      if (filter.email === this.props.adminEmail) {
+        this.setState({ hospitalName: filter.hospital });
+      }
+    });
   }
   displayData() {
     return this.state.item.map((item, i) => {
-      return (
-        <tr key={i}>
-          <td>{item.id}</td>
-          <td>{item.hospital}</td>
-          <td>{item.queueState}</td>
-          <td>{item.notes}</td>
-          <td>{item.priority}</td>
-          <td>{item.user}</td>
-        </tr>
-      );
+      if (item.hospital === this.state.hospitalName) {
+        return (
+          <tr key={i}>
+            <td>{item.id}</td>
+            <td>{item.hospital}</td>
+            <td>{item.queueState}</td>
+            <td>{item.notes}</td>
+            <td>{item.priority}</td>
+            <td>{item.user}</td>
+          </tr>
+        );
+      }
     });
   }
 
   render() {
+    console.log("kkkkkkkk", this.state.hospitalName);
     // const { identityitem, img, name } = this.state;
     {
-      console.log("datadisplayed", this.state.item);
+      // console.log("datadisplayed", this.state.item);
     }
     return (
       <div>

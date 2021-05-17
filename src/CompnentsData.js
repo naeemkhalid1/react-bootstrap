@@ -27,10 +27,10 @@ class ComponentsData extends Component {
       showQueue: "",
       queProcess: "in-Process",
       CompProcess: "Completed",
-      // getData: [],
+      getData: this.props.location.state.objectProp,
       // currentPage: 1,
       // dataPerPage: 3,
-      // render: "",
+      renderData: "",
     };
     this.hide = this.hide.bind(this);
     // this.hidecomplete = this.hidecomplete.bind(this);
@@ -42,6 +42,7 @@ class ComponentsData extends Component {
     this.showUserTable = this.showUserTable.bind(this);
     this.showCompleteData = this.showCompleteData.bind(this);
   }
+
   hide(id) {
     const currentItems = this.state.item.filter(
       (filterItems) => filterItems.id !== id
@@ -53,26 +54,43 @@ class ComponentsData extends Component {
     this.setState({ showState: currentShowItems });
   }
   async componentDidMount() {
+    let tempvar = "";
     const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
-    // this.setState({
-    //   getData: json,
-    // });
+    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
+    const jsonemail = await responseemail.json();
+    if (this.state.getData !== "") {
+      const emailFinder = jsonemail.filter(
+        (filterme) => filterme.email === this.state.getData
+      );
+      const emailfound = emailFinder.map((value) => (tempvar = value.hospital));
+      console.log("h", emailfound);
+      console.log("h++++", this.state.getData);
+      const hospitalfinder = json.filter(
+        (filterme) => filterme.hospital === tempvar
+      );
+      if (hospitalfinder.length < 1) {
+        console.log("runned");
+        this.setState({ renderData: "no data" });
+      }
+      console.log("hoooooooo", hospitalfinder);
+      const waitingItems = hospitalfinder.filter(
+        (filterItems) => filterItems.queueState === "Waiting"
+      );
+      this.setState({ item: waitingItems });
+      const inProcessItems = hospitalfinder.filter(
+        (filterItems) => filterItems.queueState === "in-Process"
+      );
+      this.setState({ showState: inProcessItems });
+      const completeItems = hospitalfinder.filter(
+        (filterItems) => filterItems.queueState === "Completed"
+      );
+      this.setState({ completeStatus: completeItems });
+    }
 
-    const waitingItems = json.filter(
-      (filterItems) => filterItems.queueState === "Waiting"
-    );
-    this.setState({ item: waitingItems });
-    const inProcessItems = json.filter(
-      (filterItems) => filterItems.queueState === "in-Process"
-    );
-    this.setState({ showState: inProcessItems });
-    const completeItems = json.filter(
-      (filterItems) => filterItems.queueState === "Completed"
-    );
-    this.setState({ completeStatus: completeItems });
     // this.pagintionHolder();
   }
+  filterData() {}
   showData(clickedId) {
     const currentdate = new Date();
     const processTime =
@@ -91,7 +109,7 @@ class ComponentsData extends Component {
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
         collection.processTime = processTime;
-        console.log("++filterItem++", collection);
+        // console.log("++filterItem++", collection);
         var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
 
@@ -170,6 +188,7 @@ class ComponentsData extends Component {
   //   });
   // }
   render() {
+    console.log("Props", this.state.renderData);
     return (
       <div className="topclass">
         <Heading />
@@ -179,51 +198,57 @@ class ComponentsData extends Component {
 
           <div className="components">
             <div className="componentsInner">
-              <IntialHeading />
+              <IntialHeading data={this.state.renderData} />
               {this.state.item.length > 0
-                ? this.state.item.map((items) => {
+                ? this.state.item.map((items, index) => {
                     return (
-                      <IntialData
-                        identity={items.id}
-                        img={items.queueState}
-                        name={items.user}
-                        priority={items.priority}
-                        hospital={items.hospital}
-                        hide={this.hide}
-                        showData={this.showData}
-                        // onUpdate={this.onUpdateQueue}
-                      />
+                      <div key={index}>
+                        <IntialData
+                          identity={items.id}
+                          img={items.queueState}
+                          name={items.user}
+                          priority={items.priority}
+                          hospital={items.hospital}
+                          hide={this.hide}
+                          showData={this.showData}
+                          // onUpdate={this.onUpdateQueue}
+                        />
+                      </div>
                     );
                   })
                 : null}
             </div>
             <div className="componentsInner">
-              <FinalHeading />
+              <FinalHeading data={this.state.renderData} />
               {this.state.showState.length > 0
-                ? this.state.showState.map((items) => {
+                ? this.state.showState.map((items, index) => {
                     return (
-                      <PendingData
-                        identityitem={items.id}
-                        img={items.queueState}
-                        name={items.user}
-                        priority={items.priority}
-                        showCompleteData={this.showCompleteData}
-                      />
+                      <div key={index}>
+                        <PendingData
+                          identityitem={items.id}
+                          img={items.queueState}
+                          name={items.user}
+                          priority={items.priority}
+                          showCompleteData={this.showCompleteData}
+                        />
+                      </div>
                     );
                   })
                 : null}
             </div>
             <div className="componentsInner">
-              <PendingHeading />
+              <PendingHeading data={this.state.renderData} />
               {this.state.completeStatus.length > 0
-                ? this.state.completeStatus.map((items) => {
+                ? this.state.completeStatus.map((items, index) => {
                     return (
-                      <FinalData
-                        identityitem={items.id}
-                        img={items.queueState}
-                        name={items.user}
-                        priority={items.priority}
-                      />
+                      <div key={index}>
+                        <FinalData
+                          identityitem={items.id}
+                          img={items.queueState}
+                          name={items.user}
+                          priority={items.priority}
+                        />
+                      </div>
                     );
                   })
                 : null}
@@ -262,7 +287,11 @@ class ComponentsData extends Component {
               </Button>
             )}
           </div>
-          {this.state.showQueue > 0 ? <UsersData /> : <TableData />}
+          {this.state.showQueue > 0 ? (
+            <UsersData adminEmail={this.state.getData} />
+          ) : (
+            <TableData adminEmail={this.state.getData} />
+          )}
         </div>
 
         <div>

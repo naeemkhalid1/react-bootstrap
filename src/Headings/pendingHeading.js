@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-const Heading = () => {
+const Heading = ({ data }) => {
   return (
     <div className="intialDataHeading">
       <Card
@@ -11,8 +11,9 @@ const Heading = () => {
         }}
         className="mainCard"
       >
-        <Card.Title>
+        <Card.Title className="headings">
           <span className="headings headingsSTATUS"> COMPLETED</span>
+          <span className="head">{data}</span>
         </Card.Title>
       </Card>
     </div>
