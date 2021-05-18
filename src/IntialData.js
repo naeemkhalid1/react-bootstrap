@@ -50,7 +50,7 @@ class IntialData extends Component {
       <div className="intial_data" key={identity}>
         {/* <Heading/> */}
         <Card
-          style={{ width: "18rem", height: "9rem" }}
+          style={{ width: "18rem", height: "10rem" }}
           className="mainCard extraClass"
           key={identity}
         >
@@ -65,22 +65,24 @@ class IntialData extends Component {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
-              <Button
-                onClick={() => {
-                  showData(identity);
-                  // onUpdate();
-                }}
-              >
-                {" "}
-                Process{" "}
-              </Button>{" "}
-              <Button
-                onClick={() => hide(identity)}
-                style={{ background: "red" }}
-              >
-                {" "}
-                DECLINE{" "}
-              </Button>
+              <div className="itemss">
+                <Button
+                  onClick={() => {
+                    showData(identity);
+                    // onUpdate();
+                  }}
+                >
+                  {" "}
+                  Process{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => hide(identity)}
+                  style={{ background: "red" }}
+                >
+                  {" "}
+                  DECLINE{" "}
+                </Button>
+              </div>
             </ListGroupItem>
           </ListGroup>
         </Card>

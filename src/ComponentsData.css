@@ -16,6 +16,7 @@
   font-weight: bold;
   color: rgb(34, 90, 81);
   padding: 20px 0 0 0;
+  text-align: center;
 }
 .dataHolder {
   width: 90%;
@@ -49,6 +50,7 @@
   background-color: antiquewhite;
   padding: 10px;
 }
+
 .rows {
   background-color: aqua;
   width: 500px;

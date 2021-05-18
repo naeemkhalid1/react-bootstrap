@@ -1,0 +1,34 @@
+.grey-text {
+  text-align: left;
+}
+.main_container {
+  width: 100%;
+  /* background-color: blueviolet; */
+  /* margin: 0 auto; */
+  padding: 20px 20px 20px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: linear-gradient(rgba(250, 0, 0, 0.5), transparent);
+  background-color: orange; /*this your primary color*/
+}
+.text_right {
+  width: 1000px;
+}
+.text_rights {
+  width: 500px;
+  padding-right: ;
+  background-color: chartreuse;
+}
+.text-center-extra {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.read-more-link {
+  color: blueviolet;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  cursor: pointer;
+}

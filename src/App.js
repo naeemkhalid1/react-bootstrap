@@ -1,28 +1,38 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import ComponentsData from "./CompnentsData";
-import PendingData from "./PendendData";
+//import PendingData from "./PendendData";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Form from "./components/registration";
+//import  LoginPage from "./components/loginForm"
+import LoginForm from "./components/loginForm";
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+//import { Card, Button } from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="./logo192.png" />
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
-    <Button variant="primary">Go somewhere</Button>
-  </Card.Body>
-</Card> */}
-
-      <ComponentsData />
-    </div>
+    // <div className="App">
+    //   {/* <ComponentsData /> */}
+    //   <Form />
+    // </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Form} />
+        <Route path="/associations" component={ComponentsData} />
+        <Route path="/login" component={LoginForm} />
+        {/* <Route path="/users" component={Users} />
+        <Route path="/plans" component={Plans} />
+        <Route path="/newinvoice" component={Newinvoice} />
+        <Route path="/invoicelist" component={Invoicelist} />
+        <Route path="/addnotice" component={Addnotice} />
+        <Route path="/gateway" component={Gateways} />
+        <Route path="/sms" component={Sms} />
+        <Route path="/email" component={Email} />
+        <Route path="/addons" component={Addons} />
+        <Route path="/loggeduser" component={Latesloggedin} />  */}
+      </Switch>
+    </Router>
   );
 }
 // import { Form } from 'react-bootstrap';
