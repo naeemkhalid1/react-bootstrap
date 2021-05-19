@@ -21,23 +21,23 @@ const FormPage = () => {
   const [getlongitude, setlongitude] = useState();
   const [readMore, setReadMore] = useState(false);
   const [nameInput, setNameInput] = useState({
-    name: "naeem",
+    name: "",
     errorMsg: "",
   });
   const [nameHospitalInput, setHospitalNameInput] = useState({
-    hospitalname: "dfdfdf",
+    hospitalname: "",
     hospitalerrorMsg: "",
   });
   const [hospitalEmail, setHospitalEmail] = useState({
-    hospitalEmailget: "naeem@gmail.com",
+    hospitalEmailget: "",
     hospitalEmailMsg: "",
   });
   const [conformHospitalEmail, setConformHospitalEmail] = useState({
-    conformHospitalEmailGet: "naeem@gmail.com",
+    conformHospitalEmailGet: "",
     conformHospitalEmailMsg: "",
   });
   const [password, setpassword] = useState({
-    passwordGet: "dfdfd23@W",
+    passwordGet: "",
     passwordMsg: "",
   });
   const locationFinder = async () => {
@@ -45,8 +45,8 @@ const FormPage = () => {
       function (position) {
         var lat = parseFloat(position.coords.latitude);
         var lng = parseFloat(position.coords.longitude);
-        console.log("location fo user latitude++", lat);
-        console.log("location fo user logitude", lng);
+        // console.log("location fo user latitude++", lat);
+        // console.log("location fo user logitude", lng);
         setlatitude(lat);
         setlongitude(lng);
       },
@@ -89,8 +89,10 @@ const FormPage = () => {
   const onSubmit = (e) => {
     let collection = {};
     let namecheck = /^[a-zA-Z0-9_ ]*$/;
-    let emailvalidaton = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let passwordRgx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    let emailvalidaton =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let passwordRgx =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     let isValid = namecheck.test(nameInput.name);
     let isnamevalid = namecheck.test(nameHospitalInput.hospitalname);
     let EmailValid = emailvalidaton.test(hospitalEmail.hospitalEmailget);
