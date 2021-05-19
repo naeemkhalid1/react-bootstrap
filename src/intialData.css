@@ -1,27 +1,32 @@
-.headings{
-    color: rgb(19, 94, 233);
-    font-weight: bold;
-    
+.headings {
+  color: rgb(19, 94, 233);
+  font-weight: bold;
+  text-align: center;
 }
-.headingsSTATUS{
-     color: white;
+.head {
+  color: rgb(31, 33, 37);
 }
-.intial_data{
-     display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
+.headingsSTATUS {
+  color: white;
 }
- .intialDataHeading{
-   
-    /* border-bottom-left-radius: 5px;
+.intial_data {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+}
+.intialDataHeading {
+  /* border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; */
-    margin-bottom: 5px;
-
+  margin-bottom: 5px;
 }
-.extraClass{
- margin-bottom: 5px;
-   
+.extraClass {
+  margin-bottom: 5px;
 }
-.paragraphClass{
-    margin: 50px 0 0 0;
+.paragraphClass {
+  margin: 50px 0 0 0;
+}
+.itemss {
+  display: flex;
+  /* flex-direction: column;
+} */
 }

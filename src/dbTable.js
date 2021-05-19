@@ -41,7 +41,7 @@ class TableData extends Component {
     return this.state.item.map((item, i) => {
       return (
         <tr key={item.id}>
-          <td>{item.date_added}</td>
+          <td>{item.id}</td>
           <td>{item.name}</td>
           <td>{item.disease}</td>
           <td>{item.phone}</td>
@@ -53,9 +53,9 @@ class TableData extends Component {
   }
 
   render() {
-    // const { identityitem, img, name } = this.state;
+    console.log("propsssss____________", this.props.adminEmail);
     {
-      console.log("datadisplayed", this.state.item);
+      // console.log("datadisplayed", this.state.item);
     }
     return (
       <div className="tableHolder">

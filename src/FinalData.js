@@ -16,7 +16,7 @@ class FinalData extends Component {
     return (
       <div className="intial_data">
         <Card
-          style={{ width: "18rem", height: "9rem" }}
+          style={{ width: "18rem", height: "10rem" }}
           className="main_Card extraClass"
           key={identityitem}
         >
