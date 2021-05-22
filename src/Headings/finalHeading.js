@@ -9,6 +9,7 @@ const Heading = ({ data }) => {
       >
         <Card.Title className="headings">
           <span className="headings"> IN-PROCESS </span>
+
           <span className="head">{data}</span>
         </Card.Title>
       </Card>

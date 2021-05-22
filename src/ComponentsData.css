@@ -25,6 +25,11 @@
 .maincomponentData {
   margin: 10px auto;
 }
+.button {
+  float: right;
+
+  padding-top: 20px;
+}
 .Tables {
   padding-top: 50px;
 }

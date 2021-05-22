@@ -72,15 +72,13 @@ class IntialData extends Component {
                     // onUpdate();
                   }}
                 >
-                  {" "}
-                  Process{" "}
-                </Button>{" "}
+                  Process
+                </Button>
                 <Button
                   onClick={() => hide(identity)}
                   style={{ background: "red" }}
                 >
-                  {" "}
-                  DECLINE{" "}
+                  DECLINE
                 </Button>
               </div>
             </ListGroupItem>

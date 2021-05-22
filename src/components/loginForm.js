@@ -13,10 +13,10 @@ import {
 
 const LoginPage = () => {
   const history = useHistory();
-  const [getDetail, setDetail] = useState(false);
+  const [getDetail] = useState(false);
   const [getData, setData] = useState();
-  const [emailcheck, setEmailcheck] = useState(false);
-  const [readMore, setReadMore] = useState(false);
+  const [emailcheck] = useState(false);
+
   const [hospitalEmail, setHospitalEmail] = useState({
     hospitalEmailget: "",
     hospitalEmailMsg: "",
@@ -66,6 +66,7 @@ const LoginPage = () => {
       ) {
         history.push("/associations", {
           objectProp: hospitalEmail.hospitalEmailget,
+          hospitalName: value.hospital,
         });
         // <Route
         //   exact
