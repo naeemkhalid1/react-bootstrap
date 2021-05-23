@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
-import ScrollArea from "react-scrollbar";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+
+import { Card } from "react-bootstrap";
 import PendingData from "./PendendData";
 import FinalData from "./FinalData";
 import axios from "axios";
-// import * as FaIcons from "react-icons/fa";
-import Pagination from "./pagination";
 import { BackTop } from "antd";
 import TableData from "./dbTable";
 import UsersData from "./usersTableData";
@@ -28,10 +26,11 @@ class ComponentsData extends Component {
       queProcess: "in-Process",
       CompProcess: "Completed",
       getData: this.props.location.state.objectProp,
-      // currentPage: 1,
+      currentHospital: "",
       // dataPerPage: 3,
       renderData: "",
     };
+
     this.hide = this.hide.bind(this);
     // this.hidecomplete = this.hidecomplete.bind(this);
     this.showData = this.showData.bind(this);
@@ -47,6 +46,10 @@ class ComponentsData extends Component {
     const currentItems = this.state.item.filter(
       (filterItems) => filterItems.id !== id
     );
+    console.log("iddddddd", id);
+    var deleteApiUrl = `http://127.0.0.1:3000/queue/${id}`;
+
+    fetch(deleteApiUrl, { method: "DELETE" });
     this.setState({ item: currentItems });
     const currentShowItems = this.state.showState.filter(
       (filterItems) => filterItems.id !== id
@@ -63,8 +66,11 @@ class ComponentsData extends Component {
       const emailFinder = jsonemail.filter(
         (filterme) => filterme.email === this.state.getData
       );
-      const emailfound = emailFinder.map((value) => (tempvar = value.hospital));
-      console.log("h", emailfound);
+      const hospitalName = emailFinder.map(
+        (value) => (tempvar = value.hospital)
+      );
+      // console.log("h", emailfound);
+      this.setState({ currentHospital: hospitalName });
       console.log("h++++", this.state.getData);
       const hospitalfinder = json.filter(
         (filterme) => filterme.hospital === tempvar
@@ -182,16 +188,25 @@ class ComponentsData extends Component {
     });
     console.log("queue response put= ", response);
   }
-  // paginate(pageNumber) {
-  //   this.setState({
-  //     currentPage: pageNumber,
-  //   });
-  // }
+
   render() {
-    console.log("Props", this.state.renderData);
+    {
+      console.log("hospital", this.state.currentHospital);
+    }
     return (
       <div className="topclass">
-        <Heading />
+        {/* <div className="button">
+          <Button
+            variant="danger"
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+            }}
+          >
+            logout
+          </Button>
+        </div> */}
+        <Heading data={this.state.currentHospital} />
 
         <div className="dataHolder">
           <div className="headingsName"></div>
@@ -301,11 +316,14 @@ class ComponentsData extends Component {
     );
   }
 }
-const Heading = () => {
+const Heading = ({ data }) => {
+  const holder1 = data.toString();
+  const holder = holder1.toUpperCase();
+
   return (
     <Card style={{ width: "38rem" }} className="mainCard maincomponentData">
       <Card.Title>
-        <h2 className="headingtag"> USERS DATA</h2>
+        <h2 className="headingtag"> {holder}</h2>
       </Card.Title>
     </Card>
   );
