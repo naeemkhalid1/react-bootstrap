@@ -43,6 +43,7 @@ class IntialData extends Component {
       hide,
       showData,
       priority,
+      pushToken,
       onUpdate,
     } = this.props;
 

@@ -9,6 +9,7 @@ import { BackTop } from "antd";
 import TableData from "./dbTable";
 import UsersData from "./usersTableData";
 import Button from "react-bootstrap/Button";
+import { MDBCol, MDBFormInline, MDBIcon, MDBInput } from "mdbreact";
 import IntialData from "./IntialData";
 import IntialHeading from "./Headings/intialHeading";
 import PendingHeading from "./Headings/pendingHeading";
@@ -19,6 +20,7 @@ class ComponentsData extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      keyword: "",
       item: [],
       showState: [],
       completeStatus: [],
@@ -47,7 +49,7 @@ class ComponentsData extends Component {
       (filterItems) => filterItems.id !== id
     );
     console.log("iddddddd", id);
-    var deleteApiUrl = `http://127.0.0.1:3000/queue/${id}`;
+    var deleteApiUrl = `http://192.168.2.71:3000/queue/${id}`;
 
     fetch(deleteApiUrl, { method: "DELETE" });
     this.setState({ item: currentItems });
@@ -58,9 +60,10 @@ class ComponentsData extends Component {
   }
   async componentDidMount() {
     let tempvar = "";
-    const response = await fetch(`http://192.168.1.110:3000/queues`);
+    const response = await fetch(`http://192.168.2.71:3000/queues`);
     const json = await response.json();
-    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
+    console.log("user Data+++++", json);
+    const responseemail = await fetch("http://192.168.2.71:3000/allhospital");
     const jsonemail = await responseemail.json();
     if (this.state.getData !== "") {
       const emailFinder = jsonemail.filter(
@@ -76,14 +79,24 @@ class ComponentsData extends Component {
         (filterme) => filterme.hospital === tempvar
       );
       if (hospitalfinder.length < 1) {
-        console.log("runned");
         this.setState({ renderData: "no data" });
       }
-      console.log("hoooooooo", hospitalfinder);
+      console.log("h", hospitalfinder);
+      // if (this.state.keyword !== "") {
+      //   const waitingItems = hospitalfinder.filter((filterItems) => {
+      //     filterItems.queueState === "Waiting";
+      //     return filterItems.name
+      //       .toLowerCase()
+      //       .includes(this.state.keyword.toLowerCase());
+      //   });
+      //   this.setState({ item: waitingItems });
+      // } else {
       const waitingItems = hospitalfinder.filter(
         (filterItems) => filterItems.queueState === "Waiting"
       );
       this.setState({ item: waitingItems });
+      // }
+
       const inProcessItems = hospitalfinder.filter(
         (filterItems) => filterItems.queueState === "in-Process"
       );
@@ -116,7 +129,7 @@ class ComponentsData extends Component {
         collection.user = filterItems.user;
         collection.processTime = processTime;
         // console.log("++filterItem++", collection);
-        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
+        var putApiUrl = `http://192.168.2.71:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
 
         // console.log("++clicked ", clickedId);
@@ -139,6 +152,13 @@ class ComponentsData extends Component {
     );
     this.setState({ item: currentIt });
   }
+  //   const updateInput = async (input) => {
+  //     const filtered = countryListDefault.filter(country => {
+  //      return country.name.toLowerCase().includes(input.toLowerCase())
+  //     })
+  //     setInput(input);
+  //     setCountryList(filtered);
+  //  }
 
   showCompleteData(clickedId) {
     const collection = {};
@@ -151,7 +171,7 @@ class ComponentsData extends Component {
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
         console.log("++putItem++", collection);
-        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
+        var putApiUrl = `http://192.168.2.71:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
         this.setState({
           completeStatus: [
@@ -187,11 +207,12 @@ class ComponentsData extends Component {
       headers: { "content-type": "application/json" },
     });
     console.log("queue response put= ", response);
+    return response;
   }
 
   render() {
     {
-      console.log("hospital", this.state.currentHospital);
+      console.log("hospital", this.state.keyword);
     }
     return (
       <div className="topclass">
@@ -207,6 +228,19 @@ class ComponentsData extends Component {
           </Button>
         </div> */}
         <Heading data={this.state.currentHospital} />
+        <div>
+          <MDBCol md="6">
+            <MDBInput
+              hint="Search"
+              type="text"
+              value={this.state.keyword}
+              onChange={(e) => {
+                this.setState({ keyword: e.target.value });
+              }}
+              containerClass="active-pink active-pink-2 mt-0 mb-3"
+            />
+          </MDBCol>
+        </div>
 
         <div className="dataHolder">
           <div className="headingsName"></div>
@@ -214,12 +248,15 @@ class ComponentsData extends Component {
           <div className="components">
             <div className="componentsInner">
               <IntialHeading data={this.state.renderData} />
+
               {this.state.item.length > 0
                 ? this.state.item.map((items, index) => {
+                    console.log("push token", items.notes);
                     return (
                       <div key={index}>
                         <IntialData
                           identity={items.id}
+                          pushToken={items.notes}
                           img={items.queueState}
                           name={items.user}
                           priority={items.priority}
