@@ -27,7 +27,7 @@ const LoginPage = () => {
   });
 
   useEffect(async () => {
-    const response = await fetch("http://192.168.1.110:3000/allhospital");
+    const response = await fetch("http://127.0.0.1:3000/allhospital");
     const json = await response.json();
     console.log("data++++", json);
     setData(json);

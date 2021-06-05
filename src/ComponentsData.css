@@ -4,9 +4,27 @@
   flex: 1 1 0;
   justify-content: space-between;
   background-color: #206e79;
-  height: 946px;
   overflow: scroll;
   padding: 10px;
+}
+/* .searchExtra {
+  color: #ddd;
+} */
+.csvHolder {
+  padding-bottom: 30px;
+}
+.Csv {
+  color: red;
+  background-color: seashell;
+  padding: 5px;
+  /* float: left; */
+  width: 120px;
+  font-weight: bold;
+  margin: 0 auto;
+  /* margin-bottom: 20px; */
+}
+.downloadData {
+  padding-top: 30px;
 }
 .BTNs {
   /* padding-top: 20px; */
@@ -68,6 +86,7 @@
   height: 500px;
   overflow: scroll;
   margin: 70px 0 0 0;
+  margin-bottom: 30px;
 }
 #title {
   text-align: center;

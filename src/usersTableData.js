@@ -1,4 +1,5 @@
 // import React, { Component } from "react";
+import { CSVLink } from "react-csv";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import React, { Component, useEffect, useState } from "react";
 import axios from "axios";
@@ -23,6 +24,14 @@ class UsersData extends Component {
     super(props);
     this.state = {
       item: [],
+      headers: [
+        { label: "ID", key: "id" },
+        { label: "Hospital", key: "hospital" },
+        { label: "State", key: "queueState" },
+        { label: "Notes", key: "notes" },
+        { label: "Priority", key: "priority" },
+        { label: "User", key: "user" },
+      ],
       hospitalName: "",
     };
   }
@@ -33,10 +42,10 @@ class UsersData extends Component {
   //     return this.setState({ item: temp });
   //   };
   async componentDidMount() {
-    const response = await fetch(`http://192.168.1.110:3000/queues`);
+    const response = await fetch(`http://192.168.2.71:3000/queues`);
     const json = await response.json();
     this.setState({ item: json });
-    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
+    const responseemail = await fetch("http://192.168.2.71:3000/allhospital");
     const jsonemail = await responseemail.json();
     const hospitalFind = jsonemail.filter((filter) => {
       if (filter.email === this.props.adminEmail) {
@@ -75,7 +84,7 @@ class UsersData extends Component {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Hospital Name</th>
+                <th>Hospital</th>
                 <th>State</th>
                 <th>Notes</th>
                 <th>priority</th>
@@ -85,6 +94,11 @@ class UsersData extends Component {
             <tbody>{this.displayData()}</tbody>
           </table>
         </div>
+        <CSVLink data={this.state.item} headers={this.state.headers}>
+          <div className="downloadData">
+            <div className="Csv"> Download Data</div>
+          </div>
+        </CSVLink>
       </div>
     );
   }

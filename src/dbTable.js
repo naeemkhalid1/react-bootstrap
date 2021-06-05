@@ -4,6 +4,7 @@ import React, { Component, useEffect, useState } from "react";
 import axios from "axios";
 import { Pagination } from "antd";
 import "./ComponentsData.css";
+import { CSVLink } from "react-csv";
 
 // import {
 //   Image,
@@ -24,6 +25,14 @@ class TableData extends Component {
     super(props);
     this.state = {
       item: [],
+      headers: [
+        { label: "ID", key: "id" },
+        { label: "Name", key: "name" },
+        { label: "Disease", key: "disease" },
+        { label: "Phone#", key: "phone" },
+        { label: "Age", key: "age" },
+        { label: "Gender", key: "gender" },
+      ],
     };
   }
   //   ShowData = async () => {
@@ -33,7 +42,7 @@ class TableData extends Component {
   //     return this.setState({ item: temp });
   //   };
   async componentDidMount() {
-    const response = await fetch(`http://192.168.1.110:3000/detail`);
+    const response = await fetch(`http://127.0.0.1:3000/detail`);
     const json = await response.json();
     this.setState({ item: json });
   }
@@ -53,27 +62,29 @@ class TableData extends Component {
   }
 
   render() {
-    console.log("propsssss____________", this.props.adminEmail);
-    {
-      // console.log("datadisplayed", this.state.item);
-    }
     return (
-      <div className="tableHolder">
-        <h1 id="title">Users Table</h1>
-        <table id="users">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Disease</th>
-              <th>phone#</th>
-              <th>age</th>
-              <th>Gender</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">{this.displayData()}</tbody>
-        </table>
-        {/* <Pagination defaultCurrent={1} total={50} /> */}
+      <div className="csvHolder">
+        <div className="tableHolder">
+          <h1 id="title">Users Table</h1>
+          <table id="users">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Disease</th>
+                <th>phone#</th>
+                <th>age</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">{this.displayData()}</tbody>
+          </table>
+        </div>
+        <CSVLink data={this.state.item} headers={this.state.headers}>
+          <div className="downloadData">
+            <div className="Csv"> Download Data</div>
+          </div>
+        </CSVLink>
       </div>
     );
   }
