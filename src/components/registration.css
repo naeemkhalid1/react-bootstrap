@@ -5,19 +5,16 @@
   width: 100%;
   /* background-color: blueviolet; */
   /* margin: 0 auto; */
-  padding: 20px 20px 20px 100px;
+  padding: 20px 0px 200px 250px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  /* align-items: center; */
+
   background: linear-gradient(rgba(250, 0, 0, 0.5), transparent);
   background-color: orange; /*this your primary color*/
 }
-.text_right {
-  width: 1000px;
-}
 .text_rights {
   width: 500px;
-  padding-right: ;
   background-color: chartreuse;
 }
 .text-center-extra {

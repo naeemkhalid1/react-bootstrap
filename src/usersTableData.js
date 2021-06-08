@@ -35,12 +35,7 @@ class UsersData extends Component {
       hospitalName: "",
     };
   }
-  //   ShowData = async () => {
-  //     const result = await axios("http://localhost:3000/detail");
-  //     console.log("result", result);
-  //     const temp = result.data;
-  //     return this.setState({ item: temp });
-  //   };
+
   async componentDidMount() {
     const response = await fetch(`http://192.168.2.71:3000/queues`);
     const json = await response.json();
@@ -59,11 +54,13 @@ class UsersData extends Component {
         return (
           <tr key={i}>
             <td>{item.id}</td>
+            <td>{item.user}</td>
             <td>{item.hospital}</td>
             <td>{item.queueState}</td>
             <td>{item.notes}</td>
             <td>{item.priority}</td>
-            <td>{item.user}</td>
+            <td>{item.startingTime}</td>
+            <td>{item.processTime}</td>
           </tr>
         );
       }
@@ -71,7 +68,7 @@ class UsersData extends Component {
   }
 
   render() {
-    console.log("kkkkkkkk", this.state.hospitalName);
+    console.log("kkkkkkkk", this.state.item);
     // const { identityitem, img, name } = this.state;
     {
       // console.log("datadisplayed", this.state.item);
@@ -84,11 +81,13 @@ class UsersData extends Component {
             <thead>
               <tr>
                 <th>Id</th>
+                <th>User</th>
                 <th>Hospital</th>
                 <th>State</th>
                 <th>Notes</th>
                 <th>priority</th>
-                <th>User</th>
+                <th>Start Time</th>
+                <th>Process Time</th>
               </tr>
             </thead>
             <tbody>{this.displayData()}</tbody>
