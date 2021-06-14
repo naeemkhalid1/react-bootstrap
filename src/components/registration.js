@@ -59,7 +59,7 @@ const FormPage = () => {
   console.log("latitude----", getlongitude);
   useEffect(async () => {
     locationFinder();
-    const response = await fetch("http://192.168.2.71:3000/allhospital");
+    const response = await fetch("http://192.168.1.110:3000/allhospital");
     const json = await response.json();
     console.log("data++++", json.length);
     setDetail(json);
@@ -153,7 +153,7 @@ const FormPage = () => {
     collection.longitude = getlongitude;
     collection.latitude = getlatitude;
 
-    var postApiUrl = "http://192.168.2.71:3000/createhospital"; //"`http://192.168.1.110:3000/createhospital"; //192.168.1.107
+    var postApiUrl = "http://192.168.1.110:3000/createhospital"; //"`http://192.168.1.110:3000/createhospital"; //192.168.1.107
     postApiCall(postApiUrl, collection);
     // getApiCall(getUrl, collection);
   };

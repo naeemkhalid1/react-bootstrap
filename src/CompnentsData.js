@@ -49,7 +49,7 @@ class ComponentsData extends Component {
       (filterItems) => filterItems.id !== id
     );
     console.log("iddddddd", id);
-    var deleteApiUrl = `http://192.168.2.71:3000/queue/${id}`;
+    var deleteApiUrl = `http://192.168.1.110:3000/queue/${id}`;
 
     fetch(deleteApiUrl, { method: "DELETE" });
     this.setState({ item: currentItems });
@@ -60,10 +60,10 @@ class ComponentsData extends Component {
   }
   async componentDidMount() {
     let tempvar = "";
-    const response = await fetch(`http://192.168.2.71:3000/queues`);
+    const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
     console.log("user Data+++++", json);
-    const responseemail = await fetch("http://192.168.2.71:3000/allhospital");
+    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
     const jsonemail = await responseemail.json();
     if (this.state.getData !== "") {
       const emailFinder = jsonemail.filter(
@@ -129,7 +129,7 @@ class ComponentsData extends Component {
         collection.user = filterItems.user;
         collection.processTime = processTime;
         // console.log("++filterItem++", collection);
-        var putApiUrl = `http://192.168.2.71:3000/queue/${filterItems.id}`;
+        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
 
         // console.log("++clicked ", clickedId);
@@ -171,7 +171,7 @@ class ComponentsData extends Component {
         collection.priority = filterItems.priority;
         collection.user = filterItems.user;
         console.log("++putItem++", collection);
-        var putApiUrl = `http://192.168.2.71:3000/queue/${filterItems.id}`;
+        var putApiUrl = `http://192.168.1.110:3000/queue/${filterItems.id}`;
         this.putQueueApiCall(putApiUrl, collection);
         this.setState({
           completeStatus: [

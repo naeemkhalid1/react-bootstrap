@@ -30,17 +30,18 @@ class UsersData extends Component {
         { label: "State", key: "queueState" },
         { label: "Notes", key: "notes" },
         { label: "Priority", key: "priority" },
-        { label: "User", key: "user" },
+        { label: "startingTime", key: "startingTime" },
+        { label: "processingTime", key: "processTime" },
       ],
       hospitalName: "",
     };
   }
 
   async componentDidMount() {
-    const response = await fetch(`http://192.168.2.71:3000/queues`);
+    const response = await fetch(`http://192.168.1.110:3000/queues`);
     const json = await response.json();
     this.setState({ item: json });
-    const responseemail = await fetch("http://192.168.2.71:3000/allhospital");
+    const responseemail = await fetch("http://192.168.1.110:3000/allhospital");
     const jsonemail = await responseemail.json();
     const hospitalFind = jsonemail.filter((filter) => {
       if (filter.email === this.props.adminEmail) {
