@@ -10,19 +10,19 @@ on:
   workflow_dispatch:
 jobs:    
   hello:
-     runs-on: Ubuntu 22.04.1 LTS
+     runs-on: ubuntu-latest
      steps:
        - uses: actions/checkout@v2
        - name: demo workflow
        - run: echo 'Hello world'
        - shell: bash
     
-goodby:
-  runs-on: Ubuntu 22.04.1 LTS
-  step: 
-    -name: goodbye demo workflow
-    run: echo"GoodBye demo workflow"
-    shell: bash
+  goodbye:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: goodbye demo workflow
+      run: echo"GoodBye demo workflow"
+      shell: bash
 
        
        
