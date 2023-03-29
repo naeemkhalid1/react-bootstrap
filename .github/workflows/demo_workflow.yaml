@@ -14,8 +14,8 @@ jobs:
      steps:
        - uses: actions/checkout@v2
        - name: demo workflow
-       - run: echo 'Hello world'
-       - shell: bash
+         run: echo 'Hello world'
+         shell: bash
     
   goodbye:
     runs-on: ubuntu-latest
