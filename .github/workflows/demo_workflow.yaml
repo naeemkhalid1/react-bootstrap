@@ -1,0 +1,29 @@
+name:Demo workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:    
+  hello:
+     runs-on: ubuntu-lastest
+     steps:
+       - uses: actions/checkout@v2
+       - name: demo workflow
+       - run: echo 'Hello world'
+       - shell: bash
+    
+goodby:
+  runs-on: ubuntu-latest
+  step: 
+    -name: goodbye demo workflow
+    run: echo"GoodBye demo workflow"
+    shell: bash
+
+       
+       
