@@ -11,7 +11,7 @@ on:
 
 jobs:    
   hello:
-     runs-on: ubuntu-lastest
+     runs-on: Ubuntu 22.04.1 LTS
      steps:
        - uses: actions/checkout@v2
        - name: demo workflow
@@ -19,7 +19,7 @@ jobs:
        - shell: bash
     
 goodby:
-  runs-on: ubuntu-latest
+  runs-on: Ubuntu 22.04.1 LTS
   step: 
     -name: goodbye demo workflow
     run: echo"GoodBye demo workflow"
